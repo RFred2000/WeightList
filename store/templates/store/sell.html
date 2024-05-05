@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .sellSpace {
+            margin: 30px;
+        }
+
+        .sellSpace p {
+            font-size: large;
+        }
+    </style>
+
+    <div class="sellSpace">
+        <form target="{% url 'store:create_item' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Post">
+        </form>
+    </div>
+
+{% endblock content %}
+

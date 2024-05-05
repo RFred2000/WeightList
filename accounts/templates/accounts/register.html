@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .registerBox {
+            width: 500px;
+            height: 400px;
+            padding: 5px;
+            margin-top: 30px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 3px 3px #3a3a3a;
+        }
+
+        .signupButton {
+            margin-top: 20px;
+        }
+    </style>
+
+    <div class="registerBox">
+        <h1>Register</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+{% endblock content %}
+

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .item img {
+            width: 250px;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .itemGrid {
+            overflow: hidden;
+        }
+
+        .item {
+            width: 22%;
+            height: 280px;
+            background-color: white;
+            float: left;
+            padding: 5px;
+            margin: 10px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 3px 3px #3a3a3a;
+        }
+
+        .item:hover {
+            box-shadow: 2px 2px 3px 3px #999999;
+        }
+
+        .itemDescriptor {
+            margin: 2px
+        }
+
+        .itemNamePrice {
+            color: black;
+        }
+
+        .itemBrand {
+            color: gray;
+        }
+
+    </style>
+
+    <h1>For Sale</h1>
+
+    <div class="itemGrid">
+        {% for item in itemList %}
+
+            <a href="{% url 'store:item_detail' item.pk %}">
+                <div class="item">
+                    <img src="{{item.picture.url}}"/>
+                    <p class="itemDescriptor itemNamePrice">{{ item.name}}</p>
+                    <p class="itemDescriptor itemBrand">{{ item.brand}}</p>
+                    <p class="itemDescriptor itemNamePrice">{{ item.price}}</p>
+                </div>
+            </a>
+
+        {% endfor %}
+    </div>
+
+{% endblock content %}
+

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .editSpace {
+            margin: 30px;
+        }
+
+        .editSpace p {
+            font-size: large;
+        }
+    </style>
+
+    <div class="editSpace">
+        <form target="{% url 'store:update_item' item_id=item.pk %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Fix">
+        </form>
+    </div>
+
+{% endblock content %}
+

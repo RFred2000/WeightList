@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .detailView {
+            margin-top: 50px;
+            display: flex;
+        }
+
+        .detailView img {
+            width: 600px;
+            height: 300px;
+            object-fit: contain;
+        }
+
+        .detailTitle {
+            font-size: 50px;
+            font-weight: bold;
+            margin: 0px;
+        }
+
+        .detailInfo {
+            margin-left: 20px;
+        }
+
+        .detailStat {
+            margin-top: 5px;
+        }
+
+        .addToCart {
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: black;
+            color: white;
+            border-radius: 20px;
+        }
+
+    </style>
+
+    <div class="detailView">
+        <img src="{{ item.picture.url }}"/>
+        <div class="detailInfo">
+            <p class="detailTitle">{{ item.name}}</p>
+            <p class="detailStat">{{ item.brand}}</p>
+            <p class="detailStat">{{ item.price}}</p>
+            <a href="{% url 'store:add_to_cart' item_id=item.pk %}">
+                <p class="addToCart">Add to Cart</p>
+            </a>
+        </div>
+    </div>
+
+    
+
+{% endblock content %}
+

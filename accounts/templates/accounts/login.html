@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .signInBox {
+            width: 250px;
+            height: 280px;
+            padding: 5px;
+            margin-top: 30px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 3px 3px #3a3a3a;
+        }
+
+        .signupButton {
+            margin-top: 20px;
+        }
+    </style>
+
+    <div class="signInBox">
+        <h1>Sign In</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+        <div class="signupButton">
+            <p>No account? <a href="{% url 'accounts:register' %}">Signup</a></p>
+        </div>
+
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .sellItemView {
+            margin-top: 50px;
+            display: flex;
+        }
+
+        .sellItemView img {
+            width: 100px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .sellItemTitle {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0px;
+        }
+
+        .sellItemInfo {
+            margin-left: 20px;
+        }
+
+        .sellItemStat {
+            margin: 2px;
+        }
+
+        .removeFromCart {
+            width: 500px;
+            height: 25px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align: center;
+            background-color: black;
+            color: white;
+            border-radius: 20px;
+        }
+
+        .accountInformation {
+            display: flex;
+        }
+
+        .accountInformationKeys {
+            margin-right: 30px;
+            font-weight: bold;
+        }
+
+        .accountInformationValues {
+            
+        }
+
+        .dashOption {
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-radius: 10px;
+            
+        }
+
+        .deleteButton {
+            background-color: red;
+            color: white;
+        }
+
+        .editButton {
+            margin-right: 30px;
+            margin-left: 10px;
+            background-color: gray;
+            color: black;
+        }
+
+    </style>
+
+    <h1>Dashboard</h1>
+    <h2>Account Information</h2>
+    <div class="accountInformation">
+        <div class="accountInformationKeys">
+            <p>Username</p>
+            <p>Email</p>
+        </div>
+
+        <div class="accountInformationValues">
+            <p>{{user.username}}</p>
+            <p>{{user.email}}</p>
+        </div>
+    </div>
+
+    <h2>Items for Sale</h2>
+    {% for item in itemList %}
+
+    <div>
+        <div class="sellItemView">
+            <a href="{% url 'store:delete_item' item_id=item.pk %}">
+                <p class="dashOption deleteButton">Delete</p>
+            </a>
+            <a href="{% url 'store:update_item' item_id=item.pk %}">
+                <p class="dashOption editButton">Edit</p>
+            </a>
+            <img src="{{ item.picture.url }}"/>
+            <div class="sellItemInfo">
+                <p class="sellItemTitle">{{ item.name}}</p>
+                <p class="sellItemStat">{{ item.brand}}</p>
+                <p class="sellItemStat">{{ item.price}}</p>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+{% endblock content %}

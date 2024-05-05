@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .cartItemView {
+            margin-top: 50px;
+            display: flex;
+        }
+
+        .cartItemView img {
+            width: 300px;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        .cartItemTitle {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0px;
+        }
+
+        .cartItemInfo {
+            margin-left: 20px;
+        }
+
+        .cartItemStat {
+            margin-top: 5px;
+        }
+
+        .removeFromCart {
+            width: 500px;
+            height: 25px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align: center;
+            background-color: black;
+            color: white;
+            border-radius: 20px;
+        }
+
+
+
+    </style>
+
+    <h1>Cart</h1>
+    <div>
+        {% for cartItem in cartItems %}
+            <div class="cartItemView">
+                <img src="{{ cartItem.item.picture.url }}"/>
+                <div class="cartItemInfo">
+                    <p class="cartItemTitle">{{ cartItem.item.name}}</p>
+                    <p class="cartItemStat">{{ cartItem.item.brand}}</p>
+                    <p class="cartItemStat">{{ cartItem.item.price}}</p>
+                </div>
+            </div>
+            <a href="{% url 'store:remove_from_cart' cart_item_id=cartItem.pk %}">
+                <p class="removeFromCart">Remove from Cart</p>
+            </a>
+
+        {% endfor %}
+    </div>
+
+    
+
+{% endblock content %}
+
